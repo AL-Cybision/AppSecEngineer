@@ -1,0 +1,24 @@
+rules:
+  - id: expenseguard.unsafe-upload-filename-path
+    message: Do not use UploadFile.filename as a filesystem path or object-storage key.
+    severity: ERROR
+    languages: [python]
+    mode: taint
+    metadata:
+      cwe: CWE-22
+      confidence: HIGH
+      references:
+        - https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html
+    pattern-sources:
+      - pattern: $UPLOAD.filename
+    pattern-sanitizers:
+      - pattern: Path(...).name
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: open($PATH, ...)
+              - pattern: os.path.join(..., $PATH, ...)
+              - pattern: $CLIENT.put_object(..., Key=$PATH, ...)
+              - pattern: $STORAGE.put($FILE, $PATH, ...)
+          - focus-metavariable: $PATH
+

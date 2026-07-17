@@ -1,0 +1,7 @@
+aws_region      = "ap-south-1"
+environment     = "lab"
+hosted_zone_id  = "Z0000000000000000000"
+domain_name     = "expenseguard.example.com"
+image_uri       = "123456789012.dkr.ecr.ap-south-1.amazonaws.com/expenseguard-lab@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+desired_count   = 1
+

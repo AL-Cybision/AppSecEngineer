@@ -1,0 +1,15 @@
+exceptions:
+  - id: EXAMPLE-001
+    tool: checkov
+    fingerprint: CKV_EXAMPLE
+    asset: infra/terraform/example.tf
+    severity: medium
+    rationale: Replace this example; do not approve placeholders.
+    owner: security-owner
+    compensating_controls:
+      - A concrete, verifiable control
+    approved_by: product-risk-owner
+    approved_on: 2026-07-16
+    expires_on: 2026-08-15
+    status: example-only
+

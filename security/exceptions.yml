@@ -1,0 +1,60 @@
+exceptions:
+  - id: EXC-IAC-001
+    controls: [CKV_AWS_338]
+    rationale: Lab application logs retain 30 days to limit synthetic-data retention and cost.
+  - id: EXC-IAC-002
+    controls: [CKV_AWS_158]
+    rationale: Customer-managed CloudWatch KMS is deferred to the production profile.
+  - id: EXC-IAC-003
+    controls: [CKV_AWS_91]
+    rationale: The lab collects application logs and CloudTrail; production must add ALB access logs.
+  - id: EXC-IAC-004
+    controls: [CKV2_AWS_28]
+    rationale: AWS WAF is a production and explicit-cost control, not part of the short lab apply.
+  - id: EXC-IAC-005
+    controls: [CKV2_AWS_62]
+    rationale: Receipt object data events are captured by CloudTrail without an unoperated notification target.
+  - id: EXC-IAC-006
+    controls: [CKV_AWS_144]
+    rationale: Cross-region replication is a production availability control with storage and transfer cost.
+  - id: EXC-IAC-007
+    controls: [CKV_AWS_18]
+    rationale: CloudTrail data events are the selected lab object-access evidence.
+  - id: EXC-IAC-008
+    controls: [CKV_AWS_145]
+    rationale: SSE-S3 is sufficient for synthetic lab data; production requires an approved CMK design.
+  - id: EXC-IAC-009
+    controls: [CKV_AWS_354]
+    rationale: Performance Insights CMK is deferred to production and explicit cost approval.
+  - id: EXC-IAC-010
+    controls: [CKV_AWS_118]
+    rationale: Enhanced RDS monitoring is deferred to the operated production environment.
+  - id: EXC-IAC-011
+    controls: [CKV2_AWS_30]
+    rationale: Logging every SQL statement risks sensitive values; production must select and test safer query telemetry.
+  - id: EXC-IAC-012
+    controls: [CKV_AWS_136]
+    rationale: ECR AES256 is accepted for lab images; production requires CMK review.
+  - id: EXC-IAC-013
+    controls: [CKV2_AWS_62]
+    rationale: CloudTrail bucket notifications require an owned response integration before enabling.
+  - id: EXC-IAC-014
+    controls: [CKV_AWS_35]
+    rationale: CloudTrail SSE-S3 is accepted for lab evidence; production requires a CMK.
+  - id: EXC-IAC-015
+    controls: [CKV_AWS_252]
+    rationale: No SNS subscriber is operated in the short-lived lab.
+  - id: EXC-IAC-016
+    controls: [CKV2_AWS_10]
+    rationale: Validated S3 trail delivery is lab evidence; production requires CloudWatch integration and alerts.
+  - id: EXC-IAC-017
+    controls: [CKV2_AWS_11]
+    rationale: VPC flow-log ingestion is deferred to production cost and retention approval.
+
+defaults:
+  owner: project-security-owner
+  approved_by: project-risk-owner
+  approved_on: 2026-07-16
+  expires_on: 2026-08-15
+  scope: synthetic short-lived lab only
+  production_release_allowed: false
